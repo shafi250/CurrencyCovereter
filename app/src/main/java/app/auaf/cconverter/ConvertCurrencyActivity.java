@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,6 +43,11 @@ public class ConvertCurrencyActivity extends AppCompatActivity {
         tvDerham=findViewById(R.id.tvEmirateDerhamVlaue);
 
 
+
+
+
+
+
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -61,6 +67,8 @@ public class ConvertCurrencyActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     private void getValueOnlineFromAPI() {
@@ -75,20 +83,28 @@ public class ConvertCurrencyActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     Log.d("Tag", response.toString());
-
                     try {
                         // Parsing json object response
                         // response will be a json object
 
                         date = response.getString("date");
-                        JSONObject phone = response.getJSONObject("rates");
-                        String AFN = phone.getString("AFN");
-                        String INR = phone.getString("INR");
-                        String AED = phone.getString("AED");
+                        JSONObject data = response.getJSONObject("rates");
 
-                        tvAfghani.setText(AFN+" Afghani");
-                        tvDerham.setText(AED+" Derham");
-                        tvInr.setText(INR+" Rupees");
+                        String AFN = data.getString("AFN");
+                        String INR = data.getString("INR");
+                        String AED = data.getString("AED");
+
+                        double afnRate = Double.parseDouble(AFN);
+                        double inrRate = Double.parseDouble(INR);
+                        double aedRate= Double.parseDouble(AED);
+
+
+                        double amountConvert = Double.parseDouble(etAmount.getText().toString());
+
+
+                        tvAfghani.setText(amountConvert* afnRate+" Afghani");
+                        tvDerham.setText(amountConvert* aedRate+" Derham");
+                        tvInr.setText(amountConvert*inrRate+" Rupees");
 
 
                     } catch (JSONException e) {
@@ -98,12 +114,12 @@ public class ConvertCurrencyActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     }
 
+
                 }
             }, new Response.ErrorListener() {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("TAG", "Error: " + error.getMessage());
                     Toast.makeText(getApplicationContext(),
                             error.getMessage(), Toast.LENGTH_SHORT).show();
 
