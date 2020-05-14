@@ -2,14 +2,12 @@
     <string name="app_name">CurrencyCovereter</string>
 
 
-    <string-array name="country_arrays">
-        <item>BDT</item>
+
+    <string-array name="baseCurrency">
+        <item>AFN</item>
         <item>USD</item>
-        <item>BGN</item>
-        <item>BRL</item>
-        <item>CAD</item>
-        <item>CHF</item>
         <item>INR</item>
+        <item>EUR</item>
     </string-array>
 
 </resources>
