@@ -2,7 +2,6 @@
     <string name="app_name">CurrencyCovereter</string>
 
 
-
     <string-array name="baseCurrency">
         <item>AFN</item>
         <item>USD</item>
