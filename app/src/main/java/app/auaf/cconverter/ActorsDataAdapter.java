@@ -24,6 +24,8 @@ public class ActorsDataAdapter extends RecyclerView.Adapter<ActorsDataAdapter.Ac
     public ActorsDataAdapter(Context context,ArrayList<Actor> actorArrayList) {
         this.actorArrayList = actorArrayList;
         this.context=context;
+
+
     }
 
     @NonNull
