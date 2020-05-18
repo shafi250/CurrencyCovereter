@@ -26,6 +26,7 @@ public class ActorsDataAdapter extends RecyclerView.Adapter<ActorsDataAdapter.Ac
         this.context=context;
 
 
+
     }
 
     @NonNull
